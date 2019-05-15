@@ -1,0 +1,67 @@
+---
+title: "SetSysVis"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+set.seed(666)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(SetSysVis)
+library(GGally)
+```
+
+
+## Generating a set
+
+First, we need to generate a set system we want to visualize. To do this we use function `generateClosedFamily`.
+
+```{r, fig.width=6, fig.height=6}
+A <- generateClosedFamily(6, 6)
+knitr::kable(A)
+```
+
+We want to generate names vector for our system as well.
+
+```{r}
+names <- generateNamesVector(A)
+```
+
+## Generating matrices
+
+We can generate four types of matrices
+
+```{r}
+M1 <- generateCommonElementMatrix(A)
+M2 <- generateInclusionMatrix(A)
+M3 <- generateInclusionTreeMatrix(A)
+M4 <- generateDisjointTrees(A)
+```
+
+## Visualization
+
+To visualize the set we need the package `GGally`. The first three matrices are simple.
+
+```{r, fig.width=6, fig.height=6}
+ggnet2(M1, label = names)
+```
+```{r, fig.width=6, fig.height=6}
+ggnet2(M2, label = names)
+```
+```{r, fig.width=6, fig.height=6}
+ggnet2(M3, label = names)
+```
+
+When it comes to the fourth matrix, the function returns a two-element list of a matri and vector of colors, to make the sets more distinguishable.
+
+```{r, fig.width=6, fig.height=6}
+ggnet2(M4[[1]], label = rownames(M4[[1]]), color = M4[[2]])
+```

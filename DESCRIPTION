@@ -1,0 +1,15 @@
+Package: SetSysVis
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("Lukasz", "Brzozowski", email = "flukaszbrzozowski1998@gmail.com", role = c("aut", "cre"))
+Description: The package is used to generate matrices used to visualize set systems closed under sums, especially useful when one is interested in Frankl's conjecture.
+Imports: stats, utils
+Depends: R (>= 3.5.0)
+License: GPL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1.9000
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
